@@ -38,6 +38,10 @@ public class OBJLoader {
     private static Map<String, Model> models = new HashMap<>();
     private static Map<String, Material> materials  = new HashMap<>();
 
+    private static int lastV = 0;
+    private static int lastVt = 0;
+    private static int lastVn = 0;
+
     private static String currentRootPath;
 
     public static void loadObjModel(String rootPath, String name) {
@@ -49,7 +53,7 @@ public class OBJLoader {
                 materials.put(mtlName, new Material(mtlName, mtlDiffuseTextureID, mtlAmbient, mtlDiffuse, mtlSpecular, 1, 0));
             }
             Files.lines(new File(rootPath + "/" + name + ".obj").toPath()).forEach(OBJLoader::parseObjLine);
-            models.put(currentModelName, ModelLoader.createModel(toArray3(ordVertices), toArray2(ordTexCoords), toArray3(ordNormals), materials.get(modelMaterialName)));
+            models.put(currentModelName, ModelLoader.createModel(toArray3(lastV, ordVertices), toArray2(lastVt, ordTexCoords), toArray3(lastVn, ordNormals), materials.get(modelMaterialName)));
         } catch (IOException e) {
             logger.log(Level.SEVERE, e.getMessage(), e);
         }
@@ -86,7 +90,10 @@ public class OBJLoader {
         } else if(line.startsWith("o ")) {
             if(vertices.size() > 0) {
                 models.put(currentModelName,
-                        ModelLoader.createModel(toArray3(ordVertices), toArray2(ordTexCoords), toArray3(ordNormals), materials.get(modelMaterialName)));
+                        ModelLoader.createModel(toArray3(lastV, ordVertices), toArray2(lastVt, ordTexCoords), toArray3(lastVn, ordNormals), materials.get(modelMaterialName)));
+                lastV = ordVertices.size();
+                lastVt = ordTexCoords.size();
+                lastVn = ordNormals.size();
             }
             currentModelName = line.split(" ")[1];
         }
@@ -132,23 +139,23 @@ public class OBJLoader {
         ordNormals.add(normals.get(Integer.parseInt(parts[2]) - 1));
     }
 
-    private static float[] toArray3(ArrayList<Vector3f> list) {
+    private static float[] toArray3(int start, ArrayList<Vector3f> list) {
         float[] array = new float[list.size() * 3];
         int pointer = 0;
-        for(Vector3f vector : list) {
-            array[pointer++] = vector.x;
-            array[pointer++] = vector.y;
-            array[pointer++] = vector.z;
+        for(int i = start; i < list.size(); i++) {
+            array[pointer++] = list.get(i).x;
+            array[pointer++] = list.get(i).y;
+            array[pointer++] = list.get(i).z;
         }
         return array;
     }
 
-    private static float[] toArray2(ArrayList<Vector2f> list) {
+    private static float[] toArray2(int start, ArrayList<Vector2f> list) {
         float[] array = new float[list.size() * 2];
         int pointer = 0;
-        for(Vector2f vector : list) {
-            array[pointer++] = vector.x;
-            array[pointer++] = vector.y;
+        for(int i = start; i < list.size(); i++) {
+            array[pointer++] = list.get(i).x;
+            array[pointer++] = list.get(i).y;
         }
         return array;
     }
