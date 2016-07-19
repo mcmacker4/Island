@@ -1,7 +1,6 @@
-package com.mcmacker4.lowpoly;
+package com.mcmacker4.lowpoly.input;
 
 import org.lwjgl.glfw.GLFWKeyCallback;
-import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -10,13 +9,13 @@ import java.util.HashMap;
 /**
  * Created by McMacker4 on 22/05/2016.
  */
-public class Input extends GLFWKeyCallback {
+public class Keyboard extends GLFWKeyCallback {
 
     private static HashMap<Integer, java.lang.Boolean> keys = new HashMap<>();
 
-    public static Input INSTANCE;
+    public static Keyboard INSTANCE;
 
-    public Input() {
+    public Keyboard() {
         INSTANCE = this;
     }
 

@@ -47,8 +47,8 @@ public class LowPoly {
     }
 
     private void init() {
-        camera = new Camera(new Vector3f(0, 15, 0), new Vector3f((float) Math.toRadians(-90f), 0f, 0f));
-        light = new Light(new Vector3f(2, 600, 2), new Vector3f(1.0f, 1.0f, 1.0f));
+        camera = new Camera(new Vector3f(0, 15, 0), new Vector3f(0f, 0f, 0f));
+        light = new Light(new Vector3f(20, 60, 20), new Vector3f(0.6f, 0.6f, 0.6f));
         OBJLoader.loadObjModel("res/models/island", "Small_Tropical_Island");
         models = OBJLoader.getAllModels();
         entities = new ArrayList<>();
@@ -72,7 +72,7 @@ public class LowPoly {
 
     private void update() {
         camera.update();
-        light.getPosition().set(0, 10, 0);
+        //light.getPosition().set(0, 10, 0);
     }
 
     private void render() {

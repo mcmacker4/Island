@@ -1,7 +1,12 @@
 package com.mcmacker4.lowpoly;
 
+import com.mcmacker4.lowpoly.input.Keyboard;
+import com.mcmacker4.lowpoly.input.Mouse;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.system.MemoryUtil;
+
+import java.nio.DoubleBuffer;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -36,7 +41,8 @@ public class Display {
                 (vidmode.width() - WIDTH) / 2,
                 (vidmode.height() - HEIGHT) / 2);
 
-        glfwSetKeyCallback(window, new Input());
+        glfwSetKeyCallback(window, new Keyboard());
+        glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
         glfwMakeContextCurrent(window);
         glfwShowWindow(window);
@@ -59,8 +65,17 @@ public class Display {
         glfwSwapBuffers(window);
     }
 
+    private static DoubleBuffer mxpos, mypos;
+    static {
+        mxpos = MemoryUtil.memAllocDouble(1);
+        mypos = MemoryUtil.memAllocDouble(1);
+    }
+
     public static void pollEvents() {
         glfwPollEvents();
+        mxpos.clear(); mypos.clear();
+        glfwGetCursorPos(window, mxpos, mypos);
+        Mouse.update(mxpos.get(), mypos.get());
     }
 
     public static void destroy() {
