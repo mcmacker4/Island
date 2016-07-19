@@ -21,8 +21,8 @@ public abstract class ShaderProgram {
     int programID;
 
     public ShaderProgram(String name) throws IOException {
-        String vShaderSource = readFile("res/shaders/" + name + ".v");
-        String fShaderSource = readFile("res/shaders/" + name + ".f");
+        String vShaderSource = readFile("res/shaders/" + name + ".vert.glsl");
+        String fShaderSource = readFile("res/shaders/" + name + ".frag.glsl");
         int vShader = createShader(GL_VERTEX_SHADER, vShaderSource);
         int fShader = createShader(GL_FRAGMENT_SHADER, fShaderSource);
         programID = glCreateProgram();
