@@ -56,10 +56,6 @@ public class Skybox {
         shader.loadProjectionMatrix(projectionMatrix);
         shader.stop();
 
-        System.out.println("Skybox VAO: " + vao);
-        System.out.println("Skybox TexID: " + textureID);
-        System.out.println("Skybox vertexCount: " + vertexCount);
-
     }
 
     public void render(Matrix4f view) {
