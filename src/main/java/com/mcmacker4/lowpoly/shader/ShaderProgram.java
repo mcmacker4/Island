@@ -34,6 +34,10 @@ public abstract class ShaderProgram {
         glDeleteShader(vShader);
         glDeleteShader(fShader);
         getAllUniformLocations();
+        glValidateProgram(programID);
+        if(glGetProgrami(programID, GL_VALIDATE_STATUS) != GL_TRUE) {
+            System.err.println(glGetProgramInfoLog(programID));
+        }
     }
 
     protected abstract void getAllUniformLocations();

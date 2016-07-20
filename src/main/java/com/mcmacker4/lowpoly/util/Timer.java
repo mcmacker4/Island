@@ -25,7 +25,6 @@ public class Timer {
             counter = 0;
             FPS = fpsCount;
             fpsCount = 0;
-            System.out.println("FPS: " + FPS);
         }
     }
 

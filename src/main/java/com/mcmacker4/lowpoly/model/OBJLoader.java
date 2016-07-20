@@ -128,7 +128,6 @@ public class OBJLoader {
             );
         } else if(line.startsWith("map_Kd ")) {
             mtlDiffuseTextureID = Texture.loadTexture(currentRootPath, line.split(" ")[1].substring(1));
-            System.out.println("Texture: " + line.split(" ")[1].substring(1) + " with id " + mtlDiffuseTextureID);
         }
     }
 

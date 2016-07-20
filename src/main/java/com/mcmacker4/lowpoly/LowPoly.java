@@ -2,10 +2,12 @@ package com.mcmacker4.lowpoly;
 
 import com.mcmacker4.lowpoly.entity.Entity;
 import com.mcmacker4.lowpoly.entity.Light;
+import com.mcmacker4.lowpoly.misc.Skybox;
 import com.mcmacker4.lowpoly.model.Model;
 import com.mcmacker4.lowpoly.model.OBJLoader;
 import com.mcmacker4.lowpoly.shader.StaticShader;
 import com.mcmacker4.lowpoly.util.Timer;
+import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -31,6 +33,7 @@ public class LowPoly {
     Matrix4f projectionMatrix;
     Camera camera;
     Light light;
+    Skybox skybox;
 
     private void start() {
         Display.create();
@@ -58,6 +61,7 @@ public class LowPoly {
             entities.add(entity);
         }
         projectionMatrix = new Matrix4f().setPerspective((float) Math.toRadians(80f), (float) Display.WIDTH / Display.HEIGHT, 0.1f, 300f);
+        skybox = new Skybox(projectionMatrix);
         try {
             shader = new StaticShader();
         } catch(IOException e) {
@@ -76,6 +80,7 @@ public class LowPoly {
     }
 
     private void render() {
+        skybox.render(new Matrix4f(new Matrix3f(camera.getViewMatrix())));
         for(Entity e : entities) {
             masterRenderer.drawEntity(e, camera, light);
         }

@@ -2,6 +2,7 @@ package com.mcmacker4.lowpoly.model;
 
 import com.mcmacker4.lowpoly.material.Material;
 import org.lwjgl.BufferUtils;
+import org.lwjgl.system.MemoryUtil;
 
 import java.io.IOException;
 import java.nio.FloatBuffer;
@@ -40,7 +41,7 @@ public class ModelLoader {
     }
 
     private static FloatBuffer toFloatBuffer(float[] data) {
-        FloatBuffer buffer = BufferUtils.createFloatBuffer(data.length);
+        FloatBuffer buffer = MemoryUtil.memAllocFloat(data.length);
         buffer.put(data);
         buffer.flip();
         return buffer;
