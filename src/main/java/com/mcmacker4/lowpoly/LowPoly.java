@@ -82,7 +82,7 @@ public class LowPoly {
     private void render() {
         skybox.render(new Matrix4f(new Matrix3f(camera.getViewMatrix())));
         for(Entity e : entities) {
-            masterRenderer.drawEntity(e, camera, light);
+            masterRenderer.drawEntity(e, camera, light, skybox.getTextureID());
         }
     }
 

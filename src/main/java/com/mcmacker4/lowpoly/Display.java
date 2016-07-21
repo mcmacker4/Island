@@ -51,6 +51,7 @@ public class Display {
 
         GL.createCapabilities();
 
+        glEnable(GL_TEXTURE_2D);
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_CULL_FACE);
         glClearColor(0.3f, 0.6f, 0.9f, 1.0f);

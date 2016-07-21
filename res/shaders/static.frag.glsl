@@ -20,6 +20,7 @@ struct Light {
 };
 
 uniform sampler2D sampler;
+uniform samplerCube skybox;
 uniform Material material;
 uniform Light light;
 
@@ -31,6 +32,7 @@ void main(void) {
     vec3 unitNormal = normalize(_normal);
     vec3 lightDir = normalize(light.position - _fragPos);
 
+
     float diffuseBrightness = max(dot(unitNormal, lightDir), 0.0);
     vec3 diffuse = light.color * (diffuseBrightness * material.diffuse);
 
@@ -39,12 +41,16 @@ void main(void) {
 
     //Specular
     vec3 viewDir = normalize(eyePosition - _fragPos);
-    vec3 reflectDir = reflect(-lightDir, _normal);
-    float spec = pow(max(dot(viewDir, reflectDir), 0.0), material.shineDamper);
+    vec3 lightReflectDir = reflect(-lightDir, unitNormal);
+    float spec = pow(max(dot(viewDir, lightReflectDir), 0.0), material.shineDamper);
     vec3 specular = material.shininess * (spec * material.specular);
+
+    //Reflection
+    vec3 camDir = normalize(_fragPos - eyePosition);
+    vec3 cameraReflectDir = reflect(camDir, unitNormal);
 
     //Result
     vec3 result = (ambient + diffuse + specular);
-    pixel_color = vec4(result, 1.0) * texture(sampler, _texCoord);
+    pixel_color = vec4(result, 1.0) * texture(sampler, _texCoord) * texture(skybox, cameraReflectDir);
 
 }

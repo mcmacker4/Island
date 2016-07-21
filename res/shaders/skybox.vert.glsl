@@ -10,6 +10,6 @@ uniform mat4 viewMatrix;
 void main(void) {
 
     gl_Position = projectionMatrix * viewMatrix * vec4(position, 1.0);
-    texCoords = normalize(position);
+    texCoords = position;
 
 }

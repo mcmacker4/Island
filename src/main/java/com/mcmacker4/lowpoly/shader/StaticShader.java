@@ -27,6 +27,7 @@ public class StaticShader extends ShaderProgram {
     private static int LOCATION_MATERIAL_SHINE_DAMPER;
     private static int LOCATION_MATERIAL_SHININESS;
     private static int LOCATION_EYE_POSITION;
+    private static int LOCATION_SKYBOX_SAMPLER;
 
     public StaticShader() throws IOException {
         super("static");
@@ -45,6 +46,7 @@ public class StaticShader extends ShaderProgram {
         LOCATION_MATERIAL_SHINE_DAMPER = getUniformLocation("material.shineDamper");
         LOCATION_MATERIAL_SHININESS = getUniformLocation("material.shininess");
         LOCATION_EYE_POSITION = getUniformLocation("eyePosition");
+        LOCATION_SKYBOX_SAMPLER = getUniformLocation("skybox");
     }
 
     public void loadProjectionMatrix(Matrix4f matrix) {
@@ -74,6 +76,10 @@ public class StaticShader extends ShaderProgram {
         loadVector3f(LOCATION_MATERIAL_SPECULAR, material.getSpecular());
         loadFloat(LOCATION_MATERIAL_SHINE_DAMPER, material.getShineDamper());
         loadFloat(LOCATION_MATERIAL_SHININESS, material.getShininess());
+    }
+
+    public void setSkyboxSamplerID(int id) {
+        loadInt(LOCATION_SKYBOX_SAMPLER, id);
     }
 
 }
