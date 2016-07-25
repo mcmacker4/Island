@@ -1,6 +1,6 @@
 package com.mcmacker4.lowpoly.util;
 
-import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.glfwGetTime;
 
 /**
  * Created by McMacker4 on 22/05/2016.

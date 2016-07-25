@@ -3,10 +3,8 @@ package com.mcmacker4.lowpoly;
 import com.mcmacker4.lowpoly.input.Keyboard;
 import com.mcmacker4.lowpoly.input.Mouse;
 import com.mcmacker4.lowpoly.util.Timer;
-import com.sun.corba.se.impl.oa.poa.ActiveObjectMap;
 import org.joml.Matrix3f;
 import org.joml.Matrix4f;
-import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 

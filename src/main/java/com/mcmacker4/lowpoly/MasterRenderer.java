@@ -2,15 +2,11 @@ package com.mcmacker4.lowpoly;
 
 import com.mcmacker4.lowpoly.entity.Entity;
 import com.mcmacker4.lowpoly.entity.Light;
-import com.mcmacker4.lowpoly.model.Model;
 import com.mcmacker4.lowpoly.shader.StaticShader;
-import org.joml.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.*;
-import static org.lwjgl.opengl.GL30.*;
-
-import java.util.HashMap;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
 
 /**
  * Created by McMacker4 on 22/05/2016.

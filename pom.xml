@@ -37,7 +37,6 @@
             <artifactId>joml</artifactId>
             <version>RELEASE</version>
         </dependency>
-        <!-- JSON Library is missing. -->
     </dependencies>
 
     <build>

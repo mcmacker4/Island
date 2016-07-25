@@ -1,6 +1,5 @@
 package com.mcmacker4.lowpoly.entity;
 
-import com.mcmacker4.lowpoly.material.Material;
 import com.mcmacker4.lowpoly.model.Model;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

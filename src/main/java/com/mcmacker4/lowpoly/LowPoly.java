@@ -11,12 +11,12 @@ import org.joml.Matrix3f;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-import static org.lwjgl.opengl.GL11.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Logger;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * Created by McMacker4 on 22/05/2016.

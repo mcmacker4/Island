@@ -1,11 +1,6 @@
 package com.mcmacker4.lowpoly.input;
 
 import org.joml.Vector2d;
-import org.lwjgl.system.MemoryUtil;
-
-import java.nio.DoubleBuffer;
-
-import static org.lwjgl.glfw.GLFW.*;
 
 /**
  * Created by McMacker4 on 19/07/2016.

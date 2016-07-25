@@ -2,8 +2,6 @@ package com.mcmacker4.lowpoly.material;
 
 import org.joml.Vector3f;
 
-import java.util.HashMap;
-
 /**
  * Created by McMacker4 on 23/05/2016.
  */
